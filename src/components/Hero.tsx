@@ -41,7 +41,7 @@ export default function Hero({ onStart }: HeroProps) {
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
           <p className="text-forter-muted text-sm mt-4">
-            6 quick questions · Free · Instant results
+            5 quick questions · Free · Instant results
           </p>
         </div>
 
