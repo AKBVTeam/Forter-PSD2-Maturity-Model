@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-forter-dark: #0B0A1A;
+  --color-forter-hero: #0A1628;
+  --color-forter-blue: #2563EB;
+  --color-forter-blue-light: #60A5FA;
+  --color-forter-navy: #141228;
+  --color-forter-purple: #6C2BD9;
+  --color-forter-purple-light: #8B5CF6;
+  --color-forter-violet: #A78BFA;
+  --color-forter-coral: #FF6B6B;
+  --color-forter-teal: #14B8A6;
+  --color-forter-surface: #1E1B3A;
+  --color-forter-border: #2D2A4A;
+  --color-forter-muted: #9CA3AF;
+
+  --color-level-1: #3B82F6;
+  --color-level-2: #0D9488;
+  --color-level-3: #22C55E;
+  --color-level-4: #F97316;
+  --color-level-5: #8B5CF6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out forwards;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  80%, 100% { transform: scale(2); opacity: 0; }
+}
+
+.pulse-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  animation: pulse-ring 2s ease-out infinite;
+}
