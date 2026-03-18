@@ -10,6 +10,7 @@ type Step = "hero" | "quiz" | "cta" | "results";
 export default function App() {
   const [step, setStep] = useState<Step>("hero");
   const [answers, setAnswers] = useState<number[]>([]);
+  const [formData, setFormData] = useState<FormData | null>(null);
   const mainRef = useRef<HTMLDivElement>(null);
 
   function scrollToTop() {
@@ -27,7 +28,8 @@ export default function App() {
     setTimeout(scrollToTop, 50);
   }
 
-  function handleFormSubmit(_data: FormData) {
+  function handleFormSubmit(data: FormData) {
+    setFormData(data);
     setStep("results");
     setTimeout(scrollToTop, 50);
   }
@@ -55,12 +57,17 @@ export default function App() {
               )
             )
           )}
+          answers={answers}
           onSubmit={handleFormSubmit}
         />
       )}
 
       {step === "results" && (
-        <Results answers={answers} onRequestAudit={handleRequestAudit} />
+        <Results
+          answers={answers}
+          formData={formData}
+          onRequestAudit={handleRequestAudit}
+        />
       )}
     </div>
   );

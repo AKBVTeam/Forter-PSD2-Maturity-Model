@@ -1,4 +1,6 @@
+import { useMemo } from "react";
 import { maturityLevels } from "../data/levels";
+import { getChallengeRatesByLevel } from "../data/exemptions";
 import {
   Shield,
   FileSearch,
@@ -10,19 +12,26 @@ import {
 
 interface MaturityModelProps {
   currentLevel: number;
+  aovLabel?: string;
 }
 
 const levelIcons = [Shield, FileSearch, BarChart3, Layers, Brain];
 
 const staircaseOffsets = [
-  "lg:mt-40",
-  "lg:mt-30",
-  "lg:mt-20",
-  "lg:mt-10",
+  "lg:mt-24",
+  "lg:mt-18",
+  "lg:mt-12",
+  "lg:mt-6",
   "lg:mt-0",
 ];
 
-export default function MaturityModel({ currentLevel }: MaturityModelProps) {
+export default function MaturityModel({ currentLevel, aovLabel }: MaturityModelProps) {
+  const challengeRates = useMemo(
+    () => getChallengeRatesByLevel(aovLabel ?? ""),
+    [aovLabel]
+  );
+  const isPersonalised = !!aovLabel;
+
   return (
     <section id="maturity-model" className="bg-forter-dark py-20 px-4">
       <div className="max-w-6xl mx-auto">
@@ -39,15 +48,25 @@ export default function MaturityModel({ currentLevel }: MaturityModelProps) {
         {/* Staircase visual */}
         <div className="relative mb-12">
           {/* Axis labels */}
-          <div className="hidden lg:flex absolute -left-2 top-1/2 -translate-y-1/2 -rotate-90 text-xs text-forter-muted font-medium tracking-widest uppercase origin-center">
-            Revenue Recovery &rarr;
+          <div className="hidden lg:block text-xs text-forter-muted font-medium tracking-widest uppercase mb-2">
+            &uarr; Revenue Recovery
           </div>
 
-          <div className="flex flex-col lg:flex-row items-stretch gap-4 lg:gap-3 lg:pl-6">
+          <div className="flex flex-col lg:flex-row items-stretch gap-4 lg:gap-3">
             {maturityLevels.map((level, i) => {
               const Icon = levelIcons[i];
               const isCurrentLevel = level.level === currentLevel;
               const isPast = level.level < currentLevel;
+
+              const stats = level.stats.map((stat) => {
+                if (stat.label === "Typical challenge rate") {
+                  return {
+                    label: isPersonalised ? "Typical challenge rate *" : stat.label,
+                    value: challengeRates[level.level] ?? stat.value,
+                  };
+                }
+                return stat;
+              });
 
               return (
                 <div
@@ -97,7 +116,7 @@ export default function MaturityModel({ currentLevel }: MaturityModelProps) {
                     </p>
 
                     <div className="space-y-1.5">
-                      {level.stats.map((stat, j) => (
+                      {stats.map((stat, j) => (
                         <div
                           key={j}
                           className="flex items-center justify-between text-xs"
@@ -127,6 +146,12 @@ export default function MaturityModel({ currentLevel }: MaturityModelProps) {
             Operational Sophistication &rarr;
           </div>
         </div>
+
+        {isPersonalised && (
+          <p className="text-forter-muted text-xs text-center max-w-2xl mx-auto">
+            * Typical challenge rates shown are tailored to your average order value ({aovLabel}). Merchants with different AOV profiles will see different achievable rates at each level.
+          </p>
+        )}
       </div>
     </section>
   );

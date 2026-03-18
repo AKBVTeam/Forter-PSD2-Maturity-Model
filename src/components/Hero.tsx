@@ -28,7 +28,7 @@ export default function Hero({ onStart }: HeroProps) {
 
           <p className="text-lg md:text-xl text-forter-muted leading-relaxed mb-10 max-w-2xl mx-auto">
             1 in 4 good customers drop off after a 3DS challenge. Most merchants
-            can't see the problem — let alone fix it. Discover where your
+            can't see the problem, let alone fix it. Discover where your
             authentication strategy sits on the maturity curve and unlock the
             revenue you're leaving behind.
           </p>
@@ -69,7 +69,7 @@ export default function Hero({ onStart }: HeroProps) {
         <div className="flex flex-wrap items-center justify-center gap-8 mt-16 text-forter-muted animate-fade-up" style={{ animationDelay: "0.4s" }}>
           <div className="flex items-center gap-2 text-sm">
             <TrendingUp className="w-4 h-4 text-forter-teal" />
-            Based on data from ECB, Ravelin, Stripe & MRC
+            Based on data from ECB, EBA, Stripe & MRC
           </div>
           <div className="flex items-center gap-2 text-sm">
             <BarChart3 className="w-4 h-4 text-forter-teal" />

@@ -24,7 +24,7 @@ export const maturityLevels: MaturityLevel[] = [
       "No active exemption management strategy",
     ],
     revenueImpact:
-      "Merchants at this level typically lose 2–3.5% of conversion to unnecessary authentication friction. With 40%+ 3DS abandonment rates in some markets, the hidden revenue leakage can be substantial.",
+      "Merchants at this level typically lose 2 to 3.5% of conversion to unnecessary authentication friction. With 40%+ 3DS abandonment rates in some markets, the hidden revenue leakage can be substantial.",
     color: "var(--color-level-1)",
     improvements: [
       "Implement Transaction Risk Analysis (TRA) exemptions for low-risk transactions",
@@ -34,7 +34,7 @@ export const maturityLevels: MaturityLevel[] = [
     ],
     stats: [
       { label: "Typical challenge rate", value: "80%+" },
-      { label: "Revenue at risk", value: "2–3.5%" },
+      { label: "Revenue at risk", value: "2 to 3.5%" },
       { label: "Authentication visibility", value: "Minimal" },
     ],
   },
@@ -43,7 +43,7 @@ export const maturityLevels: MaturityLevel[] = [
     name: "Exemption Awareness",
     tagline: "SCA exemptions used to reduce unnecessary authentication",
     description:
-      "You've started using SCA exemptions like TRA and low-value to bypass unnecessary challenges. However, your strategy isn't yet data-driven — exemptions are applied broadly rather than optimised per transaction, issuer, or market.",
+      "You've started using SCA exemptions like TRA and low-value to bypass unnecessary challenges. However, your strategy isn't yet data-driven. Exemptions are applied broadly rather than optimised per transaction, issuer, or market.",
     characteristics: [
       "Basic SCA exemptions (TRA, low-value) are in place",
       "Some awareness of authentication impact on conversion",
@@ -51,7 +51,7 @@ export const maturityLevels: MaturityLevel[] = [
       "Challenge rates reduced but not systematically optimised",
     ],
     revenueImpact:
-      "You're likely recovering some of the conversion tax, but without issuer-level optimisation, exemption rejection rates may still be high — some issuers reject 30%+ of exemption requests.",
+      "You're likely recovering some of the conversion tax, but without issuer-level optimisation, exemption rejection rates may still be high. Some issuers reject 30%+ of exemption requests.",
     color: "var(--color-level-2)",
     improvements: [
       "Track exemption acceptance rates by issuer and market",
@@ -60,7 +60,7 @@ export const maturityLevels: MaturityLevel[] = [
       "Monitor mobile vs. desktop authentication performance separately",
     ],
     stats: [
-      { label: "Typical challenge rate", value: "40–60%"},
+      { label: "Typical challenge rate", value: "40 to 60%"},
       { label: "Exemption adoption", value: "Basic" },
       { label: "Issuer-level visibility", value: "Limited" },
     ],
@@ -70,7 +70,7 @@ export const maturityLevels: MaturityLevel[] = [
     name: "Authentication Measurement",
     tagline: "Merchants track authentication KPIs and challenge outcomes",
     description:
-      "You're measuring authentication as a distinct performance discipline. Key metrics like challenge rate, authentication success, and abandonment are tracked separately. You have the data foundation — now you need to act on it at the issuer and market level.",
+      "You're measuring authentication as a distinct performance discipline. Key metrics like challenge rate, authentication success, and abandonment are tracked separately. You have the data foundation, and now you need to act on it at the issuer and market level.",
     characteristics: [
       "Authentication KPIs tracked separately from general conversion",
       "Challenge rates, success rates, and abandonment measured",
@@ -78,7 +78,7 @@ export const maturityLevels: MaturityLevel[] = [
       "Beginning to identify issuer-level performance variation",
     ],
     revenueImpact:
-      "With proper measurement in place, you can now quantify the conversion tax. Most merchants at this level discover 1–2% additional conversion recovery opportunity through issuer and device-level optimisation.",
+      "With proper measurement in place, you can now quantify the conversion tax. Most merchants at this level discover 1 to 2% additional conversion recovery opportunity through issuer and device-level optimisation.",
     color: "var(--color-level-3)",
     improvements: [
       "Build issuer-level authentication scorecards for top 20 issuers",
@@ -87,7 +87,7 @@ export const maturityLevels: MaturityLevel[] = [
       "Implement anomaly detection for sudden issuer behaviour changes",
     ],
     stats: [
-      { label: "Typical challenge rate", value: "25–40%" },
+      { label: "Typical challenge rate", value: "25 to 40%" },
       { label: "KPI tracking", value: "Comprehensive" },
       { label: "Optimisation", value: "Reactive" },
     ],
@@ -114,7 +114,7 @@ export const maturityLevels: MaturityLevel[] = [
       "Implement identity-led frictionless authentication for known customers",
     ],
     stats: [
-      { label: "Typical challenge rate", value: "15–25%" },
+      { label: "Typical challenge rate", value: "15 to 25%" },
       { label: "Auth success rate", value: "85%+" },
       { label: "Optimisation", value: "Proactive" },
     ],
@@ -124,7 +124,7 @@ export const maturityLevels: MaturityLevel[] = [
     name: "Identity-Led Authentication",
     tagline: "Behavioural identity signals determine when authentication is required",
     description:
-      "You've achieved the pinnacle of authentication optimisation. The decision to challenge is based on how well the customer is known — through behavioural signals, transaction history, and identity intelligence — not just the risk profile of an individual transaction. Authentication is invisible to trusted customers.",
+      "You've achieved the pinnacle of authentication optimisation. The decision to challenge is based on how well the customer is known through behavioural signals, transaction history, and identity intelligence, not just the risk profile of an individual transaction. Authentication is invisible to trusted customers.",
     characteristics: [
       "Identity intelligence drives authentication decisions",
       "Behavioural signals determine challenge necessity in real-time",
@@ -132,7 +132,7 @@ export const maturityLevels: MaturityLevel[] = [
       "Continuous optimisation across all issuers, devices, and markets",
     ],
     revenueImpact:
-      "Leaders at Level 5 achieve 90%+ authentication success rates with minimal customer friction. The conversion tax is virtually eliminated — recovering the full revenue potential that compliance-only approaches leave behind.",
+      "Leaders at Level 5 achieve 90%+ authentication success rates with minimal customer friction. The conversion tax is virtually eliminated, recovering the full revenue potential that compliance-only approaches leave behind.",
     color: "var(--color-level-5)",
     improvements: [
       "You're leading the market. Continue to refine identity models with new data signals.",
@@ -149,10 +149,10 @@ export const maturityLevels: MaturityLevel[] = [
 ];
 
 export const industryStats = [
-  { value: "79%", label: "Global 3DS success rate", source: "Ravelin 2025" },
-  { value: "€57B", label: "Estimated year-one SCA abandonment losses", source: "Edgar Dunn / Ravelin" },
+  { value: "79%", label: "Global 3DS success rate", source: "Industry benchmark" },
+  { value: "€57B", label: "Estimated year-one SCA abandonment losses", source: "Industry research" },
   { value: "1 in 4", label: "Good customers drop off after a 3DS challenge", source: "Industry data" },
-  { value: "13×", label: "More revenue lost to false declines than actual fraud", source: "Opensend Research" },
-  { value: "64%", label: "Global frictionless authentication rate", source: "Ravelin 2025" },
-  { value: "8.3%", label: "Average revenue boost from 3DS optimisation", source: "Signifyd" },
+  { value: "13×", label: "More revenue lost to false declines than actual fraud", source: "Industry research" },
+  { value: "64%", label: "Global frictionless authentication rate", source: "Industry benchmark" },
+  { value: "8.3%", label: "Average revenue boost from 3DS optimisation", source: "Industry benchmark" },
 ];

@@ -40,7 +40,7 @@ export const questions: QuizQuestion[] = [
     question: "What role do SCA exemptions play in your payment strategy?",
     subtitle: "How exemptions factor into your authentication and conversion optimisation",
     options: [
-      { text: "We don't actively use exemptions — regulatory compliance is the priority", level: 1 },
+      { text: "We don't actively use exemptions. Regulatory compliance is the priority", level: 1 },
       { text: "We apply TRA or low-value exemptions where possible but without granular rules", level: 2 },
       { text: "We test different exemption types and measure their impact on approval rates", level: 3 },
       { text: "We dynamically select exemptions based on issuer-specific acceptance patterns", level: 4 },

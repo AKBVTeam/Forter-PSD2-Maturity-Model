@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { ChevronLeft, ChevronRight, CheckCircle2 } from "lucide-react";
-import { questions, type QuizQuestion } from "../data/questions";
+import { questions } from "../data/questions";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface QuizProps {
@@ -8,30 +8,38 @@ interface QuizProps {
 }
 
 export default function Quiz({ onComplete }: QuizProps) {
+  const total = questions.length;
   const [current, setCurrent] = useState(0);
-  const [answers, setAnswers] = useState<(number | null)[]>(
-    Array(questions.length).fill(null)
-  );
+  const [answers, setAnswers] = useState<Record<number, number>>({});
   const [direction, setDirection] = useState(1);
+  const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const answersRef = useRef(answers);
+  answersRef.current = answers;
 
-  const q: QuizQuestion = questions[current];
-  const progress = ((current + 1) / questions.length) * 100;
-  const allAnswered = answers.every((a) => a !== null);
+  const q = questions[current];
+  const progress = ((current + 1) / total) * 100;
+  const answeredCount = Object.keys(answers).length;
+  const allAnswered = answeredCount === total;
+  const currentAnswered = current in answers;
 
-  function selectOption(level: number) {
-    const next = [...answers];
-    next[current] = level;
-    setAnswers(next);
+  const selectOption = useCallback(
+    (level: number) => {
+      setAnswers((prev) => ({ ...prev, [current]: level }));
 
-    if (current < questions.length - 1) {
-      setTimeout(() => {
-        setDirection(1);
-        setCurrent((c) => c + 1);
-      }, 300);
-    }
-  }
+      if (current < total - 1) {
+        if (advanceTimer.current) clearTimeout(advanceTimer.current);
+        advanceTimer.current = setTimeout(() => {
+          advanceTimer.current = null;
+          setDirection(1);
+          setCurrent((c) => Math.min(c + 1, total - 1));
+        }, 350);
+      }
+    },
+    [current, total]
+  );
 
   function goBack() {
+    if (advanceTimer.current) clearTimeout(advanceTimer.current);
     if (current > 0) {
       setDirection(-1);
       setCurrent((c) => c - 1);
@@ -39,15 +47,18 @@ export default function Quiz({ onComplete }: QuizProps) {
   }
 
   function goForward() {
-    if (current < questions.length - 1 && answers[current] !== null) {
+    if (advanceTimer.current) clearTimeout(advanceTimer.current);
+    if (current < total - 1 && currentAnswered) {
       setDirection(1);
       setCurrent((c) => c + 1);
     }
   }
 
   function handleSubmit() {
-    if (allAnswered) {
-      onComplete(answers as number[]);
+    const latest = answersRef.current;
+    if (Object.keys(latest).length === total) {
+      const ordered = questions.map((_, i) => latest[i]);
+      onComplete(ordered);
     }
   }
 
@@ -63,11 +74,11 @@ export default function Quiz({ onComplete }: QuizProps) {
       className="min-h-screen bg-forter-dark flex items-center justify-center px-4 py-20"
     >
       <div className="w-full max-w-2xl">
-        {/* Progress bar */}
+        {/* Progress */}
         <div className="mb-8">
           <div className="flex items-center justify-between text-sm text-forter-muted mb-3">
             <span>
-              Question {current + 1} of {questions.length}
+              Question {current + 1} of {total}
             </span>
             <span>{Math.round(progress)}% complete</span>
           </div>
@@ -89,7 +100,7 @@ export default function Quiz({ onComplete }: QuizProps) {
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
               className="flex-1"
             >
               <p className="text-forter-purple-light text-sm font-medium mb-3">
@@ -146,10 +157,10 @@ export default function Quiz({ onComplete }: QuizProps) {
               Back
             </button>
 
-            {current < questions.length - 1 ? (
+            {current < total - 1 ? (
               <button
                 onClick={goForward}
-                disabled={answers[current] === null}
+                disabled={!currentAnswered}
                 className="flex items-center gap-2 text-sm text-forter-muted hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
               >
                 Next
