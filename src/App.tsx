@@ -44,7 +44,12 @@ export default function App() {
 
       {step === "hero" && <Hero onStart={handleStart} />}
 
-      {step === "quiz" && <Quiz onComplete={handleQuizComplete} />}
+      {step === "quiz" && (
+        <Quiz
+          onComplete={handleQuizComplete}
+          onBack={() => { setStep("hero"); setTimeout(scrollToTop, 50); }}
+        />
+      )}
 
       {step === "cta" && (
         <CTAForm

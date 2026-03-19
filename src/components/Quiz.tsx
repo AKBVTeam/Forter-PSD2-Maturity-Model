@@ -5,9 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 
 interface QuizProps {
   onComplete: (answers: number[]) => void;
+  onBack: () => void;
 }
 
-export default function Quiz({ onComplete }: QuizProps) {
+export default function Quiz({ onComplete, onBack }: QuizProps) {
   const total = questions.length;
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
@@ -43,6 +44,8 @@ export default function Quiz({ onComplete }: QuizProps) {
     if (current > 0) {
       setDirection(-1);
       setCurrent((c) => c - 1);
+    } else {
+      onBack();
     }
   }
 
@@ -150,8 +153,7 @@ export default function Quiz({ onComplete }: QuizProps) {
           <div className="flex items-center justify-between mt-8 pt-6 border-t border-forter-border">
             <button
               onClick={goBack}
-              disabled={current === 0}
-              className="flex items-center gap-2 text-sm text-forter-muted hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
+              className="flex items-center gap-2 text-sm text-forter-muted hover:text-white transition-colors cursor-pointer"
             >
               <ChevronLeft className="w-4 h-4" />
               Back

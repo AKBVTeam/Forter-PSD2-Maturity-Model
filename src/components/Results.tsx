@@ -260,7 +260,7 @@ export default function Results({ answers, formData, onRequestAudit }: ResultsPr
               <p className="text-forter-muted text-xs mb-5">Adjust the highlighted values to match your exact numbers and see the estimate update in real time.</p>
               <div className="space-y-3 text-sm">
                 <div className="flex items-center justify-between gap-3">
-                  <span className="text-forter-muted">Your annual EEA GMV</span>
+                  <span className="text-forter-muted">Your annual EEA GMV {formData?.typicalAov && <span className="text-forter-muted/60 text-xs">(AOV: {formData.typicalAov})</span>}</span>
                   <div className="flex items-center gap-1 flex-shrink-0">
                     <span className="text-forter-muted text-xs">{currency}</span>
                     <input
@@ -332,8 +332,8 @@ export default function Results({ answers, formData, onRequestAudit }: ResultsPr
                   <span className="text-forter-teal font-medium">{(estimate.forterExemptionRate * 100).toFixed(0)}%</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-forter-muted">Remaining GMV at risk after Forter</span>
-                  <span className="text-white font-medium">{formatCurrency(estimate.forterRemainingLow, estimate.currency)} &ndash; {formatCurrency(estimate.forterRemainingHigh, estimate.currency)}</span>
+                  <span className="text-forter-muted">Expected 3DS challenge rate with Forter <span className="text-forter-muted/60 text-xs">(reduced friction)</span></span>
+                  <span className="text-forter-purple-light font-medium">{((1 - estimate.forterExemptionRate) * 100).toFixed(0)}%</span>
                 </div>
                 <div className="h-px bg-forter-border my-1" />
                 <div className="flex items-center justify-between">
@@ -610,7 +610,7 @@ export default function Results({ answers, formData, onRequestAudit }: ResultsPr
       <footer className="border-t border-forter-border py-8 px-4">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-forter-muted text-sm">
           <p>
-            Data sourced from ECB, EBA, Stripe, MRC, and industry
+            Data sourced from Forter, ECB, EBA, Stripe, MRC, and industry
             research reports.
           </p>
           <p>&copy; {new Date().getFullYear()} Forter, Inc. All rights reserved.</p>

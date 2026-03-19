@@ -47,7 +47,7 @@ export function getChallengeRateBrackets(aovLabel: string): ChallengeRateBracket
 export function getChallengeRatesByLevel(aovLabel: string): Record<number, string> {
   const aov = AOV_BRACKETS.find((b) => b.label === aovLabel);
   if (!aov) {
-    return { 1: "80%+", 2: "40 to 60%", 3: "25 to 40%", 4: "15 to 25%", 5: "<15%" };
+    return { 1: "100%", 2: "40 to 60%", 3: "25 to 40%", 4: "15 to 25%", 5: "<15%" };
   }
 
   const floor = aov.forter3dsRate;
@@ -64,7 +64,7 @@ export function getChallengeRatesByLevel(aovLabel: string): Record<number, strin
   }
 
   return {
-    1: `${fmt(l1)}+`,
+    1: "100%",
     2: `${fmt(l2)} to ${fmt(l1)}`,
     3: `${fmt(l3)} to ${fmt(l2)}`,
     4: `${fmt(l4)} to ${fmt(l3)}`,

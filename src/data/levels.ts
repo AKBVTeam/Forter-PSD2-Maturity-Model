@@ -33,7 +33,7 @@ export const maturityLevels: MaturityLevel[] = [
       "Identify your top 5 issuers by volume and track their authentication success rates",
     ],
     stats: [
-      { label: "Typical challenge rate", value: "80%+" },
+      { label: "Typical challenge rate", value: "100%" },
       { label: "Revenue at risk", value: "2 to 3.5%" },
       { label: "Authentication visibility", value: "Minimal" },
     ],
