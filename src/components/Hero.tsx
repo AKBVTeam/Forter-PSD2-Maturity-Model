@@ -1,4 +1,4 @@
-import { ArrowRight, TrendingUp, ShieldCheck, BarChart3 } from "lucide-react";
+import { ArrowRight, TrendingUp, ShieldCheck, BarChart3, DollarSign, Target, Layers } from "lucide-react";
 import { industryStats } from "../data/levels";
 
 interface HeroProps {
@@ -43,6 +43,31 @@ export default function Hero({ onStart }: HeroProps) {
           <p className="text-forter-muted text-sm mt-4">
             5 quick questions · Free · Instant results
           </p>
+
+          {/* What you'll get */}
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
+            <div className="flex items-start gap-3 bg-white/5 border border-white/8 rounded-xl px-4 py-3.5 text-left">
+              <DollarSign className="w-5 h-5 text-forter-teal flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="text-white text-sm font-semibold leading-tight">GMV Recovery Estimate</p>
+                <p className="text-forter-muted text-xs mt-0.5">See how much revenue Forter could unlock for your business</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 bg-white/5 border border-white/8 rounded-xl px-4 py-3.5 text-left">
+              <Target className="w-5 h-5 text-forter-purple-light flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="text-white text-sm font-semibold leading-tight">Personalised Roadmap</p>
+                <p className="text-forter-muted text-xs mt-0.5">Tailored to your AOV, challenge rate, and maturity level</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 bg-white/5 border border-white/8 rounded-xl px-4 py-3.5 text-left">
+              <Layers className="w-5 h-5 text-forter-coral flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="text-white text-sm font-semibold leading-tight">Maturity Benchmark</p>
+                <p className="text-forter-muted text-xs mt-0.5">See where you sit vs. industry leaders across 5 levels</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Stats ribbon */}
